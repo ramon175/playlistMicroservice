@@ -1,15 +1,59 @@
-# Node.js Hello World Sample
+# WhatSound Playlist MicroService
 
-This application demonstrates a simple, reusable Node.js web application based on the Express framework.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/nodejs-helloworld)
 
-## Run the app locally
 
-1. [Install Node.js][]
-+ cd into this project's root directory
-+ Run `npm install` to install the app's dependencies
-+ Run `npm start` to start the app
-+ Access the running app in a browser at <http://localhost:6001>
 
-[Install Node.js]: https://nodejs.org/en/download/
+
+
+Endpoints to manipulate a music playlist based on spotify uris inside a Cloudant noSQLDB 
+
+
+
+REST API example:
+
+
+
+```
+
+    GET https://playlist.mybluemix.net/createPlaylist?token=token&name=PlaylistName
+    GET https://playlist.mybluemix.net/insertMusic?token=token&uri=spotifyUri
+    GET https://playlist.mybluemix.net/getPlaylist?token=token
+
+```
+
+# Response:
+
+
+
+```
+GET https://playlist.mybluemix.net/createPlaylist?token=token&name=PlaylistName
+
+{
+  "status": true
+}
+
+GET https://playlist.mybluemix.net/insertMusic?token=token&uri=spotifyUri
+
+{
+  "message": "Inserted uri successfully",
+  "status": "true"
+}
+ 
+GET https://playlist.mybluemix.net/getPlaylist?token=token
+
+{
+  "message": "Inserted uri successfully",
+  "status": true,
+  "uris": [
+    
+  ]
+}
+
+
+```
+
+
+
+
+

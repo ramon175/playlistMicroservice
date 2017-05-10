@@ -1,10 +1,10 @@
 applications:
 - path: .
-  memory: 256M
+  memory: 128M
   instances: 1
   domain: mybluemix.net
-  name: playlistMicroservice
-  host: playlistMicroservice
+  name: playlist
+  host: playlist
   disk_quota: 1024M
   services:
   - playlistAccountsDB

@@ -77,8 +77,6 @@ app.get('/insertMusic', function(req,res){
     var token = req.query.token || null,
         id,
         rev,
-        artist = req.query.artist,
-        track = req.query.track,
         uri = req.query.uri;
     
     if(token === null) {
@@ -120,9 +118,7 @@ app.get('/insertMusic', function(req,res){
                     _id:id,
                     _rev:rev,
                     token: docInfo.token,
-                    uris: docInfo.uris,
-                    artist:artist,
-                    track:track
+                    uris: docInfo.uris
                     
                 }, function(err,body){
                     if(!err){         
@@ -130,6 +126,7 @@ app.get('/insertMusic', function(req,res){
                         res.send({ message:'Inserted uri successfully', status: true });
                         return;
                     }
+                    console.log(err);
                     res.send({status:false,err:"Could not insert uri."});                    
                 });
             }
@@ -160,10 +157,11 @@ app.get('/getPlaylist', function(req,res){
         function(err, data) {
           if(!err){
             console.log(" \n" + JSON.stringify(data.docs[0]));
-            res.send(data.docs[0]);
+            res.send({ message:'Inserted uri successfully', status: true, uris: data.docs[0].uris});
             return;
           }
           console.log(err);
+        res.send({status:false,err:"Could not retrieve uri list."});
         });
     }
 });
