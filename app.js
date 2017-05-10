@@ -142,6 +142,32 @@ app.get('/insertMusic', function(req,res){
     }
 });
 
+app.get('/getPlaylist', function(req,res){
+    var token = req.query.token || null;
+    
+    if(token === null) {
+        console.log("Invalid Token");
+        res.status(403).json({error: "Invalid Token"});
+    }else{
+        playlist.find({
+      "selector": {
+        "token":token
+      },
+      "fields":[
+          "uris"
+      ]
+    },
+        function(err, data) {
+          if(!err){
+            console.log(" \n" + JSON.stringify(data.docs[0]));
+            res.send(data.docs[0]);
+            return;
+          }
+          console.log(err);
+        });
+    }
+});
+
 
 
 // start server on the specified port and binding host
